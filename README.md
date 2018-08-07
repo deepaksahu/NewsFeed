@@ -9,9 +9,10 @@ Install below Software required to run this app if not in your mac osx system
 
 For Execution of this app follow below steps:
 
-1. CheckOut the repo
+1. Clone the repo and checkout master branch
+    git clone https://github.com/deepaksahu/NewsFeed.git
 2. Open ternimal and Navigate to folder where you have checked out the code.
-    path similar to _<your_path>/NewsFeed/_
+    path similar to _<your_download_path>/NewsFeed/_
 3. run _pod install_
 4. Open _NewsFeed.xcworkspace_ by double click
 4. Run on iPhone Simnulator or attached device
