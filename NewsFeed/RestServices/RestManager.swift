@@ -56,7 +56,7 @@ class RestManager: NSObject {
     }
 
     
-    class func restRequestServerURL(_ url: URL?, method: String?, headers: [AnyHashable : Any]?, from bodyData: Data?, completionHandler: @escaping (_ data: Any?, _ error: Error?) -> Void) {
+    class func restRequestServerURL(_ url: URL?, method: String, headers: [AnyHashable : Any]?, from bodyData: Data?, completionHandler: @escaping (_ data: Any?, _ error: Error?) -> Void) {
         var request: NSMutableURLRequest? = nil
         if let anUrl = url {
             request = NSMutableURLRequest(url: anUrl)
@@ -77,12 +77,12 @@ class RestManager: NSObject {
             }
         }
         
-        if bodyData != nil && ((method == APIHandler.Method.POST) || (method == APIHandler.Method.PUT) || (method == APIHandler.Method.DELETE)) {
+        if bodyData != nil && ((method == APIHandler.HTTPMethod.POST) || (method == APIHandler.HTTPMethod.PUT) || (method == APIHandler.HTTPMethod.DELETE)) {
             let uploadTask: URLSessionUploadTask? = session.uploadTask(with: request! as URLRequest, from: bodyData, completionHandler: { data, response, error in
                 RestManager.parseKeyPath(url?.path, responseData: data, reponse: response, error: error, completionHandler: completionHandler)
             })
             uploadTask?.resume()
-        } else if (method == APIHandler.Method.POST) || (method == APIHandler.Method.PUT) || (method == APIHandler.Method.GET) || (method == APIHandler.Method.DELETE) {
+        } else if (method == APIHandler.HTTPMethod.POST) || (method == APIHandler.HTTPMethod.PUT) || (method == APIHandler.HTTPMethod.GET) || (method == APIHandler.HTTPMethod.DELETE) {
             let dataTask: URLSessionDataTask? = session.dataTask(with: request! as URLRequest, completionHandler: { data, response, error in
                 RestManager.parseKeyPath(url?.path, responseData: data, reponse: response, error: error, completionHandler: completionHandler)
             })
@@ -92,25 +92,28 @@ class RestManager: NSObject {
         }
     }
 
-    class func restRequestPath(_ keyPath: String?, method: String?, urlParams: [AnyHashable : Any]?, additionalHeaders: [AnyHashable : Any]?, from bodyData: Data?, completionHandler: @escaping (_ data: Any?, _ error: Error?) -> Void) {
-        let components = URLComponents(string: "\(APIHandler.RequestURL)/\(APIHandler.Path.MostViewed )")
-//        if urlParams != nil {
-//            var queryParams: [AnyHashable] = []
-//            for key: String? in urlParams?.keys ?? [String?]() {
-//                let value = urlParams?[key] as? String
-//                let queryParam = URLQueryItem(name: key ?? "", value: value)
-//                queryParams.append(queryParam)
-//            }
-//            components?.queryItems = queryParams as? [URLQueryItem]
-//        }
-        let headers = ["Content-Type": "application/json"]
-//        if additionalHeaders != nil {
-//            for (k, v) in additionalHeaders { headers[k] = v }
-//        }
-        RestManager.restRequestServerURL(components?.url, method: method, headers: headers, from: bodyData, completionHandler: completionHandler)
+    class func restRequestPath(_ keyPath: String?, method: String?, urlParams: [String : String]?, additionalHeaders: [String : String]?, from bodyData: Data?, completionHandler: @escaping (_ data: Any?, _ error: Error?) -> Void) {
+        var components = URLComponents(string: "\(APIHandler.RequestURL)/\(keyPath ??  "")")
+        
+        if urlParams != nil {
+            var queryParams: [URLQueryItem] = []
+            for (key,paramValue) in urlParams! {
+                let queryParam = URLQueryItem(name: key , value: paramValue)
+                queryParams.append(queryParam)
+            }
+            components?.queryItems = queryParams
+        }
+        
+        var headers = ["Content-Type": "application/json"]
+        if additionalHeaders != nil {
+            for (k, v) in additionalHeaders! {
+                headers[k] = v
+            }
+        }
+        RestManager.restRequestServerURL(components?.url, method: method ?? APIHandler.HTTPMethod.GET, headers: headers, from: bodyData, completionHandler: completionHandler)
     }
     
-    class func request(withPath path: String?, method: String?, urlParams: [AnyHashable : Any]?, additionalHeaders: [AnyHashable : Any]?, from bodyData: Data?, onSuccess: @escaping (_ response: RestResponse?) -> Void, onFailure: @escaping (_ error: Error?) -> Void) {
+    class func request(withPath path: String?, method: String?, urlParams: [String: String]?, additionalHeaders: [String : String]?, from bodyData: Data?, onSuccess: @escaping (_ response: RestResponse?) -> Void, onFailure: @escaping (_ error: Error?) -> Void) {
         
         RestManager.restRequestPath(path, method: method, urlParams: urlParams, additionalHeaders: additionalHeaders, from: bodyData, completionHandler: { response, error in
             if response != nil {

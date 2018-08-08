@@ -12,7 +12,7 @@ struct APIHandler {
     
     static let RequestURL = URL.Domain.Stage + URL.ProjectPath
     
-    struct Method {
+    struct HTTPMethod {
         static let GET = "GET"
         static let POST = "POST"
         static let PUT = "PUT"
@@ -28,14 +28,12 @@ struct APIHandler {
         static let ProjectPath = "svc/mostpopular/v2"
     }
     
-    struct Path {
-        static let MostViewed = "mostviewed/all-sections/7.json?api-key=f90924e9279443a78cf70a6bcdada8cf"
+    struct APIPath {
+        static let MostViewed = "mostviewed/all-sections/7.json"
     }
     
     struct Param {
         static let APIKey = "api-key"
     }
-    
-    
 }
 
