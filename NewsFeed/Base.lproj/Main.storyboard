@@ -17,6 +17,13 @@
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Pmd-2v-anx">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.023529411764705882" green="0.87058823529411766" blue="0.60784313725490191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textShadowColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="7bK-jq-Zjz" kind="relationship" relationship="rootViewController" id="tsl-Nk-0bq"/>
@@ -34,7 +41,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Detail view content goes here" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0XM-y9-sOw">
+                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Detail view content goes here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1000" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0XM-y9-sOw">
                                 <rect key="frame" x="20" y="323.5" width="335" height="20.5"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -78,41 +85,80 @@
         <scene sceneID="smW-Zh-WAh">
             <objects>
                 <tableViewController title="Master" clearsSelectionOnViewWillAppear="NO" id="7bK-jq-Zjz" customClass="MasterViewController" customModule="NewsFeed" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="180" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="r7i-6Z-zg0">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="r7i-6Z-zg0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleCell" rowHeight="180" id="sNG-eM-KZi" customClass="ArticleCell" customModule="NewsFeed" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="180"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ArticleCell" rowHeight="128" id="sNG-eM-KZi" customClass="ArticleCell" customModule="NewsFeed" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="128"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sNG-eM-KZi" id="f9P-hP-8sb">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="179.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="128"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Losing Earth: The Decade We Almost Stopped Climate Change" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2L-Bp-9Uz">
-                                            <rect key="frame" x="77" y="24" width="270" height="43"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Losing Earth: The Decade We Almost Stopped Climate Change" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2L-Bp-9Uz">
+                                            <rect key="frame" x="74" y="4" width="263" height="54"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="54" id="Lp1-iD-18h"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="OriyaSangamMN" family="Oriya Sangam MN" pointSize="16"/>
+                                            <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="By NATHANIEL RICH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgn-x6-l5O">
-                                            <rect key="frame" x="78" y="75" width="269" height="49"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By NATHANIEL RICH &amp; NATHANIEL NATHANIEL RICH" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgn-x6-l5O">
+                                            <rect key="frame" x="74" y="68" width="263" height="34.5"/>
                                             <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="14"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Circle_Grey_Solid" translatesAutoresizingMaskIntoConstraints="NO" id="ZaJ-0X-RmK">
-                                            <rect key="frame" x="10" y="47" width="60" height="60"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-08-01" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1vh-rR-lBE">
+                                            <rect key="frame" x="265" y="100.5" width="72" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="35v-qm-2g8"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="14"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Circle_Grey_Solid" translatesAutoresizingMaskIntoConstraints="NO" id="ZaJ-0X-RmK">
+                                            <rect key="frame" x="10" y="30" width="60" height="60"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="GdU-k7-AFw"/>
+                                                <constraint firstAttribute="height" constant="60" id="KNS-Er-Ehj"/>
+                                            </constraints>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Calendar_Clock" translatesAutoresizingMaskIntoConstraints="NO" id="ZIw-GA-nxB">
+                                            <rect key="frame" x="241" y="100.5" width="20" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="Ovz-nn-Jb1"/>
+                                                <constraint firstAttribute="height" constant="20" id="QWd-2D-Rbl"/>
+                                            </constraints>
                                         </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="y2L-Bp-9Uz" secondAttribute="trailing" constant="4" id="3Vv-Vf-uXI"/>
+                                        <constraint firstItem="ZaJ-0X-RmK" firstAttribute="leading" secondItem="f9P-hP-8sb" secondAttribute="leading" constant="10" id="3sU-9a-FBH"/>
+                                        <constraint firstItem="1vh-rR-lBE" firstAttribute="top" secondItem="fgn-x6-l5O" secondAttribute="bottom" constant="-2" id="6Ia-Au-kJb"/>
+                                        <constraint firstItem="1vh-rR-lBE" firstAttribute="leading" secondItem="ZIw-GA-nxB" secondAttribute="trailing" constant="4" id="9Wx-L4-qek"/>
+                                        <constraint firstItem="y2L-Bp-9Uz" firstAttribute="leading" secondItem="ZaJ-0X-RmK" secondAttribute="trailing" constant="4" id="A4d-WI-Vj3"/>
+                                        <constraint firstItem="fgn-x6-l5O" firstAttribute="width" secondItem="y2L-Bp-9Uz" secondAttribute="width" id="Ded-jM-k7A"/>
+                                        <constraint firstItem="1vh-rR-lBE" firstAttribute="trailing" secondItem="y2L-Bp-9Uz" secondAttribute="trailing" id="Iwq-3f-SXh"/>
+                                        <constraint firstAttribute="trailing" secondItem="fgn-x6-l5O" secondAttribute="trailing" constant="4" id="Kvb-IC-9sh"/>
+                                        <constraint firstItem="y2L-Bp-9Uz" firstAttribute="top" secondItem="f9P-hP-8sb" secondAttribute="top" constant="4" id="ZdG-St-M4Y"/>
+                                        <constraint firstItem="fgn-x6-l5O" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="y2L-Bp-9Uz" secondAttribute="leading" id="bE3-dt-h12"/>
+                                        <constraint firstItem="fgn-x6-l5O" firstAttribute="top" secondItem="y2L-Bp-9Uz" secondAttribute="bottom" constant="10" id="pay-MP-qTr"/>
+                                        <constraint firstItem="1vh-rR-lBE" firstAttribute="bottom" secondItem="ZIw-GA-nxB" secondAttribute="bottom" id="uZs-Zk-b2x"/>
+                                        <constraint firstItem="ZaJ-0X-RmK" firstAttribute="top" secondItem="f9P-hP-8sb" secondAttribute="top" constant="30" id="v0i-FQ-Fu0"/>
+                                        <constraint firstAttribute="bottom" secondItem="1vh-rR-lBE" secondAttribute="bottom" constant="7.5" id="yAj-Nd-QtJ"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="publish_date" destination="1vh-rR-lBE" id="uSU-tm-L60"/>
+                                    <outlet property="thumbView" destination="ZaJ-0X-RmK" id="YSr-Ic-5bR"/>
                                     <outlet property="txtByline" destination="fgn-x6-l5O" id="jgp-Ba-DgU"/>
                                     <outlet property="txtTitle" destination="y2L-Bp-9Uz" id="TEx-Mg-wjz"/>
+                                    <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showDetail" id="c6L-b4-946"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -122,7 +168,9 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="News Feed" id="Zdf-7t-Un8"/>
+                    <navigationItem key="navigationItem" title="NY Times Most Popular" id="Zdf-7t-Un8">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="w7v-D7-yWA"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
@@ -146,6 +194,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Calendar_Clock" width="32" height="32"/>
         <image name="Circle_Grey_Solid" width="60" height="60"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="c6L-b4-946"/>
+    </inferredMetricsTieBreakers>
 </document>

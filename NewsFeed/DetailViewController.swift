@@ -12,20 +12,28 @@ class DetailViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
-
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail = detailItem {
+        if let detail = article {
             if let label = detailDescriptionLabel {
                 label.text = detail.title ?? ""
             }
         }
     }
-
+    
+//    @objc
+//    func backButtonPressed(_ sender: Any) {
+//        self.navigationController?.popViewController(animated: true)
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         configureView()
+        
+//        let backButton = UIBarButtonItem(image: UIImage(named: "back-button"), style: .plain, target: self, action: #selector(backButtonPressed(_:)))
+//        self.navigationItem.leftBarButtonItem = backButton
+//        self.navigationController?.navigationItem.hidesBackButton = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,7 +41,7 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    var detailItem: Article? {
+    var article: Article? {
         didSet {
             // Update the view.
             configureView()

@@ -17,9 +17,10 @@ class MasterViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "News Feed"
+        self.title = "NY Times Most Popular"
         // Do any additional setup after loading the view, typically from a nib.
 
+        self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 //        navigationItem.leftBarButtonItem = editButtonItem
 //        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
 //        navigationItem.rightBarButtonItem = addButton
@@ -29,7 +30,9 @@ class MasterViewController: UITableViewController {
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
         let hud:MBProgressHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
-        RestManager.request(withPath: APIHandler.Path.MostViewed, method: APIHandler.Method.GET, urlParams: nil, additionalHeaders: nil, from: nil, onSuccess: { (resposne) in
+        
+        let urlParam = [APIHandler.Param.APIKey: Configuration.NYTimesApiKey]
+        RestManager.request(withPath: APIHandler.APIPath.MostViewed, method: APIHandler.HTTPMethod.GET, urlParams: urlParam, additionalHeaders: nil, from: nil, onSuccess: { (resposne) in
             //RestResponse
             self.articles = (resposne?.results)!
             self.tableView.reloadData()
@@ -61,9 +64,10 @@ class MasterViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let object:Article = self.articles[indexPath.row]
+                let article:Article = self.articles[indexPath.row]
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = object
+                controller.article = article
+                controller.title = article.title ?? ""
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -85,9 +89,10 @@ extension MasterViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:ArticleCell = (tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as? ArticleCell)!
 
-        let object:Article = self.articles[indexPath.row]
-        cell.txtTitle!.text = object.title ?? ""
-        cell.txtByline!.text = object.byline ?? ""
+        let article:Article = self.articles[indexPath.row]
+        cell.txtTitle!.text = article.title ?? ""
+        cell.txtByline!.text = article.byline ?? ""
+        cell.publish_date.text = article.published_date ?? ""
         return cell
     }
 }

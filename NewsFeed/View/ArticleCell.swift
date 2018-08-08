@@ -12,6 +12,10 @@ class ArticleCell: UITableViewCell {
 
     @IBOutlet weak var txtTitle: UILabel!
     @IBOutlet weak var txtByline: UILabel!
+    
+    @IBOutlet weak var thumbView: UIImageView!
+    @IBOutlet weak var publish_date: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
